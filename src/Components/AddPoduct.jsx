@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { addProduct } from "../redux/products/actions";
 import { useDispatch } from "react-redux";
 const AddPoduct = () => {
-  const dispatch =useDispatch();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -11,7 +11,6 @@ const AddPoduct = () => {
     reset,
     formState: { errors },
   } = useForm();
-
   const onSubmit = (data) => {
     dispatch(addProduct(data));
     reset();

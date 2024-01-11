@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const Navbar = () => {
   const carts = useSelector((state) => state.carts);
@@ -8,6 +8,10 @@ const Navbar = () => {
     (total, product) => total + product.quantity,
     0
   );
+  const dispatch = useDispatch();
+  const handlePageChange = (type) => {
+    dispatch({ type });
+  };
   return (
     <nav className="">
       <div>
@@ -17,13 +21,14 @@ const Navbar = () => {
           </div>
           <div className="flex-none">
             <div className="dropdown dropdown-end front-semibold">
-              <button>Home</button>
+              <button onClick={() => handlePageChange("HOME")}>Home</button>
             </div>
             <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
                 role="button"
                 className="btn btn-ghost btn-circle"
+                onClick={() => handlePageChange("CART")}
               >
                 <div className="indicator">
                   <svg
@@ -40,7 +45,9 @@ const Navbar = () => {
                       d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                     />
                   </svg>
-                  <span className="badge badge-sm indicator-item">{cartItemNo}</span>
+                  <span className="badge badge-sm indicator-item">
+                    {cartItemNo}
+                  </span>
                 </div>
               </div>
             </div>

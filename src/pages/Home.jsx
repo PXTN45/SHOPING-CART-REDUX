@@ -1,7 +1,7 @@
 import React from "react";
-import AddPoduct from "./AddPoduct";
+import AddPoduct from "../Components/AddPoduct";
 import { useSelector } from "react-redux";
-import Productitem from "./Productitem";
+import Productitem from "../Components/Productitem";
 
 const Home = () => {
   const products = useSelector((state) => state.products);
@@ -12,10 +12,8 @@ const Home = () => {
         <div className="grid sm:grid-cols-3 grid-cols-1 gap-8">
           <div className="col-span-2">
             <div className="grid md:grid-cols-2 gap-y-10 grid-cols-1">
-            {products.length ? (
-                products.map((p, i) => (
-                  <Productitem key={i} product={p} />
-                ))
+              {products.length ? (
+                products.map((p, i) => <Productitem key={i} product={p} />)
               ) : (
                 <div>No Product</div>
               )}
