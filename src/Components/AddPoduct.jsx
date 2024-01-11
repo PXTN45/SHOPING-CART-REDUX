@@ -21,14 +21,14 @@ const AddPoduct = () => {
       <h4 className="formTitle">Add New Porduct</h4>
       <form
         action=""
-        className="space-y-4 text-[#fff]"
+        className="space-y-4 text-[#000]"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="space-y-2">
           <label>Product Name</label>
           <input
             type="text"
-            className="addProductInput"
+            className="addProductInput text-[#fff]"
             {...register("name", { required: true })}
           />
           {errors.name && (
@@ -39,7 +39,7 @@ const AddPoduct = () => {
         <div className="space-y-2">
           <label> Category</label>
           <select
-            className="addProductInput"
+            className="addProductInput text-[#fff]"
             {...register("category", { required: true })}
           >
             <option value="">Select a category</option>
@@ -55,7 +55,7 @@ const AddPoduct = () => {
           <label>Image URL</label>
           <input
             type="text"
-            className="addProductInput"
+            className="addProductInput text-[#fff]"
             {...register("imageURL", { required: true })}
           />
           {errors.imageURL && (
@@ -67,7 +67,7 @@ const AddPoduct = () => {
             <label>Price</label>
             <input
               type="number"
-              className="addProductInput"
+              className="addProductInput text-[#fff]"
               {...register("price", { required: true })}
             />
             {errors.price && (
@@ -78,7 +78,7 @@ const AddPoduct = () => {
             <label>Quantity</label>
             <input
               type="number"
-              className="addProductInput"
+              className="addProductInput text-[#fff]"
               id="lws-inputQuantity"
               {...register("quantity", { required: true })}
             />
