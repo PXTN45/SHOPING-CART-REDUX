@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { IoCloseSharp } from "react-icons/io5";
+import Bill from "./Bill";
 import {
   removFromCart,
   increaseQuantity,
@@ -9,12 +10,23 @@ import {
 import { addQuantity, removeQuantity } from "../redux/products/actions";
 
 const CartItem = ({ product }) => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const { id, name, imageURL, quantity, category, price, productId } = product;
   const handleremovFromCart = () => {
-    dispatch(removFromCart(id))
-    dispatch(addQuantity(productId, quantity))
+    dispatch(removFromCart(id));
+    dispatch(addQuantity(productId, quantity));
+  };
+  if (quantity === 0) {
+    handleremovFromCart()
   }
+  const handleIncreaseQuantity = () => {
+    dispatch(increaseQuantity(id));
+    dispatch(removeQuantity(productId));
+  };
+  const handleDecreaseQuantity = () => {
+    dispatch(decreaseQuantity(id));
+    dispatch(addQuantity(productId, 1));
+  };
   return (
     <div className="rounded-lg">
       <div className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
@@ -32,7 +44,10 @@ const CartItem = ({ product }) => {
         </div>
         <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
           <div className="flex items-center border-gray-100">
-            <span className="cursor-pointer rounded-1 bg-gray-100 py-1 px-3 5 duration-100 hover:bg-blue-500 hover:text-blue-500">
+            <span
+              className="cursor-pointer rounded-1 bg-gray-100 py-1 px-3 5 duration-100 hover:bg-blue-500 hover:text-blue-500"
+              onClick={handleDecreaseQuantity}
+            >
               {" "}
               -{" "}
             </span>
@@ -43,14 +58,20 @@ const CartItem = ({ product }) => {
               value={quantity}
               className="h-8 w-8 border bg-white text-center text-xs outline-none"
             />
-            <span className="cursor-pointer rounded-1 bg-gray-100 py-1 px-3 5 duration-100 hover:bg-blue-500 hover:text-blue-500">
+            <span
+              className="cursor-pointer rounded-1 bg-gray-100 py-1 px-3 5 duration-100 hover:bg-blue-500 hover:text-blue-500"
+              onClick={handleIncreaseQuantity}
+            >
               {" "}
               +{" "}
             </span>
           </div>
           <div className="text-items-center space-x-4">
             <p className="text sm">{price * quantity} ฿</p>
-            <button className="lws-removeFromCart" onClick={handleremovFromCart}  >
+            <button
+              className="lws-removeFromCart"
+              onClick={handleremovFromCart}
+            >
               <IoCloseSharp />
             </button>
           </div>

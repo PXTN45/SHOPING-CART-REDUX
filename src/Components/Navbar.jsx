@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 const Navbar = () => {
   const carts = useSelector((state) => state.carts);
-  console.log(carts);
   const cartItemNo = carts.reduce(
     (total, product) => total + product.quantity,
     0
